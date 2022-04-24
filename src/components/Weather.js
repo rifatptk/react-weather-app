@@ -6,6 +6,8 @@ export default function Weather() {
   const [city, setcity] = useState("Thakurgaon");
   const [data, setdata] = useState();
   const [theme, settheme] = useState("warning");
+  const changeTheme = (theme) => settheme(theme);
+
   useEffect(() => {
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=f3480c04fb97d4ba0d77b0b465ef674e`
@@ -14,7 +16,7 @@ export default function Weather() {
       .then((data) => setdata(data.main))
       .catch(() => console.log("there was an error fetching data"));
   }, [city]);
-  console.log(data);
+  //   console.log(data);
 
   return (
     <div
@@ -33,6 +35,29 @@ export default function Weather() {
           value={city}
           onChange={(e) => setcity(e.target.value)}
         />
+        <div className="themes">
+          <p className={`text${theme}`}>Color</p>
+          <div
+            className="theme bg-primary"
+            val="primary"
+            onClick={(e) => changeTheme(e.target.attributes.val.value)}
+          ></div>
+          <div
+            className="theme bg-danger"
+            val="danger"
+            onClick={(e) => changeTheme(e.target.attributes.val.value)}
+          ></div>
+          <div
+            className="theme bg-light"
+            val="light"
+            onClick={(e) => changeTheme(e.target.attributes.val.value)}
+          ></div>
+          <div
+            className="theme bg-warning"
+            val="warning"
+            onClick={(e) => changeTheme(e.target.attributes.val.value)}
+          ></div>
+        </div>
       </div>
 
       {data ? (
