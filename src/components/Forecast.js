@@ -1,28 +1,36 @@
 import React from "react";
 
 export default function Forecast(props) {
-  const { data } = props;
+  const { data, city } = props;
   return (
     <>
-      <h1>{data.temp}</h1>
-      <h3>Feels Like: {data.feels_like}</h3>
-      <div className="">
+      <i className="fa-solid fa-city h3"></i>
+      <h5 className="">{city.toUpperCase()}</h5>
+      <h2>{data.temp}°c</h2>
+      <p>Feels Like: {data.feels_like}°c</p>
+      <div className="d-flex justify-content-center gap-5 p-4">
         <div>
-          <h5>Highest</h5>
-          <h4>{data.temp_max}</h4>
+          <i className="fa-solid fa-temperature-arrow-up h4"></i>
+          <h6>Highest Temp</h6>
+          <h5>{data.temp_max}°c</h5>
         </div>
         <div>
-          <h5>Lowest</h5>
-          <h4>{data.temp_min}</h4>
+          <i className="fa-solid fa-temperature-arrow-down h4"></i>
+          <h6>Lowest Temp</h6>
+          <h5>{data.temp_min}°c</h5>
         </div>
       </div>
-      <div>
-        <h5>Humadity</h5>
-        <h4>{data.humidity}</h4>
-      </div>
-      <div>
-        <h5>Pressure</h5>
-        <h4>{data.pressure}</h4>
+      <div className="d-flex justify-content-center gap-5 pb-4">
+        <div>
+          <i className="fa-solid fa-bowl-rice h4"></i>
+          <h6>Humadity</h6>
+          <h5>{data.humidity}</h5>
+        </div>
+        <div>
+          <i className="fa-solid fa-spray-can-sparkles h4"></i>
+          <h6>Pressure</h6>
+          <h5>{data.pressure}psi</h5>
+        </div>
       </div>
     </>
   );

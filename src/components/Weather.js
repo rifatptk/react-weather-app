@@ -5,29 +5,44 @@ import Forecast from "./Forecast";
 export default function Weather() {
   const [city, setcity] = useState("dhaka");
   const [data, setdata] = useState();
+  const [theme, settheme] = useState("warning");
   useEffect(() => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=f3480c04fb97d4ba0d77b0b465ef674e`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=f3480c04fb97d4ba0d77b0b465ef674e`
     )
       .then((response) => response.json())
       .then((data) => setdata(data.main))
-      .catch((error) => console.log(error));
+      .catch(() => console.log("there was an error fetching data"));
   }, [city]);
   console.log(data);
 
   return (
-    <div className="w-75 mx-auto bg-dark text-light text-center">
-      <div className="container p-5">
-        <h1>Q C A S T</h1>
+    <div
+      className={`weather-card w-75 mx-auto bg-dark text-${theme} text-center mt-3`}
+    >
+      <div className="header pt-3 mb-2">
+        <i className="fa-solid fa-cloud h1"></i>
+        <h1 className="my-3 fw-bold">Q C A S T</h1>
+        <label htmlFor="input">Enter city</label>
+        <br />
+
         <input
+          id="input"
+          className={`w-40 mb-3 bg-dark text-light text-center border-0 border-2 border-bottom border-${theme} `}
           type="text"
           value={city}
           onChange={(e) => setcity(e.target.value)}
         />
-        <h2>{city}</h2>
-
-        {data ? <Forecast data={data} /> : <h5>No data found</h5>}
       </div>
+
+      {data ? (
+        <Forecast data={data} city={city} />
+      ) : (
+        <div className="pb-5">
+          <h5>No data found, </h5>
+          <p>Please enter a valid city name</p>
+        </div>
+      )}
     </div>
   );
 }
