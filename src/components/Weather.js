@@ -3,7 +3,7 @@ import "../styles/Weather.css";
 import Forecast from "./Forecast";
 
 export default function Weather() {
-  const [city, setcity] = useState("dhaka");
+  const [city, setcity] = useState("Thakurgaon");
   const [data, setdata] = useState();
   const [theme, settheme] = useState("warning");
   useEffect(() => {
