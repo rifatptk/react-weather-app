@@ -20,7 +20,7 @@ export default function Weather() {
 
   return (
     <div
-      className={`weather-card w-75 mx-auto bg-dark text-${theme} text-center mt-3`}
+      className={`weather-card w-75 mx-auto bg-black text-${theme} text-center mt-3`}
     >
       <div className="header pt-3 mb-2">
         <i className="fa-solid fa-cloud h1"></i>
@@ -36,7 +36,9 @@ export default function Weather() {
           onChange={(e) => setcity(e.target.value)}
         />
         <div className="themes">
-          <p className={`text${theme}`}>Color</p>
+          <p className={`text${theme} h1`}>
+            <i class="fa-solid fa-brush"></i>
+          </p>
           <div
             className="theme bg-primary"
             val="primary"

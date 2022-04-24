@@ -12,7 +12,7 @@ export default function Forecast(props) {
         <div>
           <i className="fa-solid fa-temperature-arrow-up h4"></i>
           <h6>Highest Temp</h6>
-          <h5>{data.temp_max}°c</h5>
+          <h5>{(data.temp_max + 4.1).toFixed(2)}°c</h5>
         </div>
         <div>
           <i className="fa-solid fa-temperature-arrow-down h4"></i>
