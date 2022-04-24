@@ -1,13 +1,23 @@
-.header {
-  background: rgb(50, 50, 50);
-}
 .weather-card {
   position: relative;
+  box-shadow: 0 0 75px;
+  border-radius: 25px;
+}
+.header {
+  background: rgb(50, 50, 50);
+  border-radius: 20px;
+}
+.themes-container {
+  position: absolute;
+  top: 10px;
+  left: 1rem;
+  cursor: pointer;
 }
 .themes {
   position: absolute;
-  top: 10px;
-  left: 30px;
+  top: 35px;
+  left: 35px;
+  display: none;
 }
 .theme {
   height: 20px;

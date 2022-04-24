@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/Weather.css";
 import Forecast from "./Forecast";
 
@@ -6,8 +6,14 @@ export default function Weather() {
   const [city, setcity] = useState("Thakurgaon");
   const [data, setdata] = useState();
   const [theme, settheme] = useState("warning");
+  const themesSelector = useRef(null);
+  console.log(themesSelector);
   const changeTheme = (theme) => settheme(theme);
-
+  const showTheme = () => {
+    themesSelector.current.style.display == "none"
+      ? (themesSelector.current.style.display = "block")
+      : (themesSelector.current.style.display = "none");
+  };
   useEffect(() => {
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=f3480c04fb97d4ba0d77b0b465ef674e`
@@ -35,30 +41,32 @@ export default function Weather() {
           value={city}
           onChange={(e) => setcity(e.target.value)}
         />
-        <div className="themes">
-          <p className={`text${theme} h1`}>
-            <i class="fa-solid fa-brush"></i>
+        <div className="themes-container">
+          <p className={`text${theme} h1`} onClick={showTheme}>
+            <i className="fa-solid fa-brush"></i>
           </p>
-          <div
-            className="theme bg-primary"
-            val="primary"
-            onClick={(e) => changeTheme(e.target.attributes.val.value)}
-          ></div>
-          <div
-            className="theme bg-danger"
-            val="danger"
-            onClick={(e) => changeTheme(e.target.attributes.val.value)}
-          ></div>
-          <div
-            className="theme bg-light"
-            val="light"
-            onClick={(e) => changeTheme(e.target.attributes.val.value)}
-          ></div>
-          <div
-            className="theme bg-warning"
-            val="warning"
-            onClick={(e) => changeTheme(e.target.attributes.val.value)}
-          ></div>
+          <div ref={themesSelector} className="themes">
+            <div
+              className="theme bg-primary"
+              val="primary"
+              onClick={(e) => changeTheme(e.target.attributes.val.value)}
+            ></div>
+            <div
+              className="theme bg-danger"
+              val="danger"
+              onClick={(e) => changeTheme(e.target.attributes.val.value)}
+            ></div>
+            <div
+              className="theme bg-light"
+              val="light"
+              onClick={(e) => changeTheme(e.target.attributes.val.value)}
+            ></div>
+            <div
+              className="theme bg-warning"
+              val="warning"
+              onClick={(e) => changeTheme(e.target.attributes.val.value)}
+            ></div>
+          </div>
         </div>
       </div>
 
