@@ -10,7 +10,7 @@ export default function Weather() {
   console.log(themesSelector);
   const changeTheme = (theme) => settheme(theme);
   const showTheme = () => {
-    themesSelector.current.style.display == "none"
+    themesSelector.current.style.display === "none"
       ? (themesSelector.current.style.display = "block")
       : (themesSelector.current.style.display = "none");
   };
